@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Khian G. De Vera — Version 2.0 of Me</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-50: #f0faf4;
+    --green-100: #d5f0e0;
+    --green-200: #a8dfc0;
+    --green-300: #6fc99a;
+    --green-400: #3ab270;
+    --green-500: #1e9150;
+    --green-600: #15703c;
+    --green-700: #0f522b;
+    --green-800: #0b3d20;
+    --green-900: #072b16;
+    --sage: #8aaf8a;
+    --cream: #fafdf7;
+    --dark: #0e1f14;
+    --text-main: #1a2e20;
+    --text-muted: #4a6b52;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-main);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,253,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--green-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5vw;
+    height: 64px;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--green-700);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green-600); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 5vw 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 80% at 80% 20%, var(--green-100) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 60% at 10% 80%, var(--green-50) 0%, transparent 60%),
+      var(--cream);
+    z-index: 0;
+  }
+
+  .hero-leaf {
+    position: absolute;
+    top: 10%;
+    right: 3%;
+    width: 380px;
+    opacity: 0.12;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-100);
+    color: var(--green-700);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green-500);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.1;
+    color: var(--green-900);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--green-500);
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin: 1.2rem 0 2rem;
+    max-width: 520px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green-600);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--green-700); transform: translateY(-1px); }
+
+  .btn-outline {
+    border: 1.5px solid var(--green-300);
+    color: var(--green-700);
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .btn-outline:hover { background: var(--green-50); }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 80px 5vw;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--green-500);
+    margin-bottom: 0.75rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px; height: 2px;
+    background: var(--green-400);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--green-900);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .section-intro {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ME HOLISTICALLY ── */
+  #holistic { background: white; }
+
+  .self-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .self-card {
+    background: var(--green-50);
+    border: 1px solid var(--green-100);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .self-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; right: -20px;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--green-100);
+    z-index: 0;
+  }
+
+  .self-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(21,112,60,0.1); }
+
+  .card-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--green-800);
+    margin-bottom: 0.6rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .card-body {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1;
+    line-height: 1.65;
+  }
+
+  .card-tag {
+    display: inline-block;
+    background: var(--green-200);
+    color: var(--green-800);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── FUTURE SELF ── */
+  #future {
+    background: var(--green-900);
+    color: white;
+  }
+
+  #future .section-label { color: var(--green-300); }
+  #future .section-label::before { background: var(--green-400); }
+  #future h2 { color: white; }
+  #future .section-intro { color: rgba(255,255,255,0.6); }
+
+  .future-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .future-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.75rem;
+    transition: background 0.2s;
+  }
+
+  .future-card:hover { background: rgba(255,255,255,0.1); }
+
+  .future-card .card-title { color: var(--green-200); }
+  .future-card .card-body { color: rgba(255,255,255,0.65); }
+  .future-card .card-tag { background: rgba(255,255,255,0.12); color: var(--green-200); }
+
+  .future-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--green-400);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  /* ── VERSION 2.0 ── */
+  #version {
+    background: var(--green-50);
+  }
+
+  .version-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .v2-badge {
+    background: var(--green-600);
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    padding: 6px 20px;
+    border-radius: 999px;
+    font-style: italic;
+  }
+
+  .goals-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .goals-layout { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    h1 { font-size: 2.5rem; }
+  }
+
+  .goal-block {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--green-100);
+  }
+
+  .goal-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--green-800);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .goal-block h3 span {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green-400);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .goal-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .goal-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  .goal-list li::before {
+    content: '→';
+    color: var(--green-400);
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .upgrade-strip {
+    margin-top: 2rem;
+    background: var(--green-700);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .upgrade-strip h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--green-100);
+    flex-shrink: 0;
+  }
+
+  .upgrade-items {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .upgrade-pill {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  /* ── LETTER ── */
+  #letter {
+    background: white;
+  }
+
+  .letter-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--green-50);
+    border: 1px solid var(--green-100);
+    border-radius: 20px;
+    padding: 3rem;
+    position: relative;
+  }
+
+  .letter-wrapper::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: var(--green-200);
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+    line-height: 1;
+    z-index: 0;
+  }
+
+  .letter-body {
+    position: relative;
+    z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--green-900);
+    line-height: 1.9;
+    font-style: italic;
+  }
+
+  .letter-sig {
+    margin-top: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--green-600);
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--green-900);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem 5vw;
+    font-size: 0.85rem;
+  }
+
+  footer strong { color: var(--green-300); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 60px;
+    height: 3px;
+    background: var(--green-300);
+    border-radius: 2px;
+    margin: 1.5rem 0 2.5rem;
+  }
+
+  /* ── PROGRESS BAR ── */
+  .skill-row {
+    margin-bottom: 1.1rem;
+  }
+
+  .skill-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .skill-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-400), var(--green-300));
+    border-radius: 999px;
+    transition: width 1s ease;
+  }
+
+  /* ── FADE IN ── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">Khian G. De Vera</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#holistic">Me Holistically</a></li>
+    <li><a href="#future">Future Self</a></li>
+    <li><a href="#version">Version 2.0</a></li>
+    <li><a href="#letter">Letter to Self</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="home">
+  <div class="hero-bg"></div>
+
+  <!-- Decorative SVG leaf -->
+  <svg class="hero-leaf" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M200 480 C200 480 20 360 20 200 C20 90 90 20 200 20 C310 20 380 90 380 200 C380 360 200 480 200 480Z" fill="#15703c"/>
+    <path d="M200 480 L200 20" stroke="#0b3d20" stroke-width="3"/>
+    <path d="M200 200 C150 170 100 160 70 140" stroke="#0b3d20" stroke-width="2"/>
+    <path d="M200 280 C250 250 300 240 330 220" stroke="#0b3d20" stroke-width="2"/>
+    <path d="M200 350 C160 330 120 310 90 290" stroke="#0b3d20" stroke-width="2"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">Understanding the Self — Final Requirement</div>
+    <h1>Ang Buhay ni<br><em>Khian G. De Vera</em></h1>
+    <p class="hero-subtitle">
+      A personal journey through the physical, material, spiritual, digital, and future self — framed as a "Version 2.0" upgrade of me as an emerging IT professional.
+    </p>
+    <div class="hero-cta">
+      <a href="#holistic" class="btn-primary">Explore My Story</a>
+      <a href="#version" class="btn-outline">See Version 2.0 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ME HOLISTICALLY ── -->
+<section id="holistic">
+  <div class="section-label">Chapter One</div>
+  <h2>Me, Holistically</h2>
+  <div class="divider"></div>
+  <p class="section-intro">
+    A full-circle look at who I am — from the body I live in, to the values I hold, to the identity I carry online and offline.
+  </p>
+
+  <div class="self-grid">
+
+    <div class="self-card fade-in">
+      <span class="card-icon">🌿</span>
+      <div class="card-tag">Physical Self</div>
+      <div class="card-title">Body Image & Self-Esteem</div>
+      <div class="card-body">
+        My physical self is a work in progress — and that's something I've learned to embrace. I'm not defined by how I look but by how I carry myself. Building confidence means accepting the skin I'm in while striving to stay healthy and active. My body is the vessel for everything I want to achieve as a future IT professional.
+      </div>
+    </div>
+
+    <div class="self-card fade-in">
+      <span class="card-icon">💼</span>
+      <div class="card-tag">Material Self</div>
+      <div class="card-title">Possessions & Lifestyle</div>
+      <div class="card-body">
+        I live simply. My most prized possessions are my laptop, my books, and my commitment to continuous learning. Material success isn't my endgame — but I understand its role in providing stability and freedom to pursue what truly matters to me. I value experiences over things.
+      </div>
+    </div>
+
+    <div class="self-card fade-in">
+      <span class="card-icon">🙏</span>
+      <div class="card-tag">Spiritual Self</div>
+      <div class="card-title">Beliefs, Meanings & Values</div>
+      <div class="card-body">
+        Faith grounds me. Beyond religion, my spirituality is found in gratitude, purpose, and the belief that every challenge is a lesson in disguise. My values — honesty, service, and growth — guide every decision I make, from how I treat others to how I approach my studies.
+      </div>
+    </div>
+
+    <div class="self-card fade-in">
+      <span class="card-icon">❤️</span>
+      <div class="card-tag">Sexual Self</div>
+      <div class="card-title">Love Language & Relationships</div>
+      <div class="card-body">
+        My love language is Acts of Service. I show care through action — helping, being present, and contributing. In relationships, I value depth over surface. I believe understanding yourself emotionally is the foundation for building genuine connections with others.
+      </div>
+    </div>
+
+    <div class="self-card fade-in" style="grid-column: span 2;">
+      <span class="card-icon">💻</span>
+      <div class="card-tag">Digital Self</div>
+      <div class="card-title">Who Am I Online vs. Offline?</div>
+      <div class="card-body">
+        Online, I am a learner — browsing documentation, watching tutorials, joining developer communities. I curate a digital presence that reflects my professional aspirations. Offline, I am more reserved, more reflective. The gap between the two is something I am consciously bridging: I want my online identity to be as authentic as the person I am when no one is watching. In an age where digital footprints define reputations, I take my digital self seriously — because it is as real as any other part of me.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FUTURE SELF ── -->
+<section id="future">
+  <div class="section-label">Chapter Two</div>
+  <h2>Future Self as an IT Professional</h2>
+  <div class="divider"></div>
+  <p class="section-intro">
+    Where I'm headed, what I need to get there, and the ethical responsibilities I carry as a future steward of technology.
+  </p>
+
+  <div class="future-grid">
+
+    <div class="future-card fade-in">
+      <div class="card-tag">Dream Career</div>
+      <div class="card-title">Software Engineer / Full-Stack Developer</div>
+      <div class="card-body">
+        I dream of building products that solve real human problems — systems that are fast, secure, and meaningful. My goal is to join a tech company or eventually build my own, contributing to the Philippine digital economy while staying globally competitive.
+      </div>
+    </div>
+
+    <div class="future-card fade-in">
+      <div class="card-tag">Skills to Develop</div>
+      <div class="card-title">Technical & Soft Skills Roadmap</div>
+      <div class="card-body" style="margin-bottom: 1.2rem;">
+        The journey to becoming a well-rounded IT professional requires continuous upskilling:
+      </div>
+      <div class="skill-row">
+        <div class="skill-label"><span>Programming (Python, JS)</span><span>65%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 65%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label"><span>Problem Solving</span><span>70%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label"><span>Communication</span><span>60%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 60%"></div></div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-label"><span>Data Structures & Algorithms</span><span>50%</span></div>
+        <div class="skill-bar"><div class="skill-fill" style="width: 50%"></div></div>
+      </div>
+    </div>
+
+    <div class="future-card fade-in">
+      <div class="card-tag">Ethical Responsibilities</div>
+      <div class="card-title">My Pledge as a Digital Citizen</div>
+      <div class="card-body">
+        Technology is not neutral — it shapes lives. I commit to building with empathy: protecting user privacy, designing inclusive systems, and refusing to use my skills for deception or harm. The digital world needs IT professionals with integrity, not just intelligence.
+      </div>
+    </div>
+
+    <div class="future-card fade-in">
+      <div class="card-tag">Technology & Identity</div>
+      <div class="card-title">How Tech Shapes Who I Am</div>
+      <div class="card-body">
+        Technology has expanded my world — connecting me to mentors, knowledge, and communities I could never reach otherwise. But it has also challenged me to ask: who am I without a screen? I believe the answer to that question is the most important version of myself to protect.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── VERSION 2.0 ── -->
+<section id="version">
+  <div class="version-header">
+    <div class="section-label">Chapter Three</div>
+    <div class="v2-badge">Version 2.0 of Me</div>
+  </div>
+  <h2>The Upgrade Plan</h2>
+  <div class="divider"></div>
+  <p class="section-intro">
+    Concrete goals, a clear action plan, and a commitment to becoming the best version of Khian G. De Vera — one deliberate step at a time.
+  </p>
+
+  <div class="goals-layout">
+
+    <div class="goal-block fade-in">
+      <h3><span></span> Short-Term Goals (0–1 Year)</h3>
+      <ul class="goal-list">
+        <li>Complete at least 2 online certifications (e.g., Google IT Support, AWS Cloud Practitioner)</li>
+        <li>Build 3 portfolio projects that solve real-world problems</li>
+        <li>Improve daily study habits with time-blocking and Pomodoro techniques</li>
+        <li>Strengthen communication skills through public speaking practice</li>
+        <li>Maintain a consistent exercise routine for physical and mental health</li>
+      </ul>
+    </div>
+
+    <div class="goal-block fade-in">
+      <h3><span></span> Long-Term Goals (3–5 Years)</h3>
+      <ul class="goal-list">
+        <li>Graduate with honors as an IT professional</li>
+        <li>Land a full-stack developer role in a reputable tech company</li>
+        <li>Contribute to open-source projects in the Filipino developer community</li>
+        <li>Start a side project or startup addressing local tech gaps</li>
+        <li>Mentor younger students in IT, paying forward what I've learned</li>
+      </ul>
+    </div>
+
+    <div class="goal-block fade-in">
+      <h3><span></span> Areas for Improvement</h3>
+      <ul class="goal-list">
+        <li>Overcoming procrastination through better systems and accountability</li>
+        <li>Building confidence in presenting ideas to groups</li>
+        <li>Learning to ask for help sooner instead of struggling alone</li>
+        <li>Developing financial literacy alongside technical skills</li>
+      </ul>
+    </div>
+
+    <div class="goal-block fade-in">
+      <h3><span></span> Concrete Action Plan</h3>
+      <ul class="goal-list">
+        <li>Study 2 hours of code daily using structured roadmaps (roadmap.sh)</li>
+        <li>Read one book per month alternating between technical and personal growth</li>
+        <li>Join a student IT organization this semester</li>
+        <li>Weekly review of goals every Sunday evening</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="upgrade-strip fade-in">
+    <h3>How I'll Upgrade Myself</h3>
+    <div class="upgrade-items">
+      <div class="upgrade-pill">📚 Read Daily</div>
+      <div class="upgrade-pill">💻 Code Daily</div>
+      <div class="upgrade-pill">🤝 Collaborate More</div>
+      <div class="upgrade-pill">🏃 Stay Active</div>
+      <div class="upgrade-pill">🙏 Stay Grounded</div>
+      <div class="upgrade-pill">📊 Track Progress</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LETTER TO SELF ── -->
+<section id="letter">
+  <div class="section-label">Epilogue</div>
+  <h2>A Letter to My Present Self</h2>
+  <div class="divider"></div>
+
+  <div class="letter-wrapper fade-in">
+    <div class="letter-body">
+      <p>Dear Khian,</p>
+      <br>
+      <p>
+        I'm writing to you from the version of yourself you're still becoming. I know the days feel heavy sometimes — the deadlines stack up, the self-doubt creeps in, and it seems easier to scroll than to study. But I need you to hear this: you are more capable than you currently believe.
+      </p>
+      <br>
+      <p>
+        You chose IT not just for a career, but because you genuinely believe that technology can make life better for people. Don't lose that "why." It will carry you through the all-nighters, the failed outputs, and the moments when everyone else seems to be moving faster than you.
+      </p>
+      <br>
+      <p>
+        Your physical health matters. Your spiritual life matters. The people you love matter. No version of success that costs you these things is actually success. Work hard, yes — but also rest, pray, laugh, and live.
+      </p>
+      <br>
+      <p>
+        Version 2.0 isn't a destination. It's a direction. Keep walking. I'll see you there.
+      </p>
+      <br>
+      <p class="letter-sig">
+        With hope and belief,<br>
+        Khian G. De Vera<br>
+        <em style="font-size: 0.85rem; color: var(--green-400);">— Your Future Self</em>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>
+    <strong>Khian G. De Vera</strong> &nbsp;·&nbsp; Understanding the Self — Final Requirement &nbsp;·&nbsp;
+    <em>"Ang Buhay ni Eba/Adan: Version 2.0 of Me"</em>
+  </p>
+  <p style="margin-top: 0.5rem; font-size: 0.78rem;">
+    Submitted as a Personal Website Portfolio &nbsp;|&nbsp; IT Student
+  </p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        if (e.target.classList.contains('self-card') || e.target.classList.contains('future-card') || e.target.classList.contains('goal-block')) {
+          const fills = e.target.querySelectorAll('.skill-fill');
+          fills.forEach(f => {
+            const w = f.style.width;
+            f.style.width = '0%';
+            setTimeout(() => { f.style.width = w; }, 200);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
